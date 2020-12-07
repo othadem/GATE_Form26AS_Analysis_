@@ -1,0 +1,12 @@
+Phase: JAPETransTotalAmount
+Input: TotalAmountPaidCredited
+Options: control = appelt
+
+Rule: CalculateTotalAmount
+(
+    ({TotalAmountPaidCredited}):totalAmount
+)
+
+-->
+
+:totalAmount.TotalAmount = {amount = :totalAmount@string, rule = CalculateTotalAmount}

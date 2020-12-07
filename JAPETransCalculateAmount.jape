@@ -1,0 +1,44 @@
+Phase: JAPETransCalculateAmount
+Input: Deductor TAN INR
+Options: control = all
+
+// Annotate Total amount paid / credited
+Rule: AnnotateTotalAmountPaidCredited
+(
+    {Deductor}
+    {TAN}
+    ({INR}):amountTotal
+)
+
+-->
+
+:amountTotal.Credited = {amountPaid = :amountTotal@string, rule = AnnotateTotalAmountPaidCredited}
+
+
+// Annotate Total Tax amount deducted
+Rule: AnnotateTotalTaxDeducted
+(
+    {Deductor}
+    {TAN}
+    {INR}
+    ({INR}):taxDeducted
+)
+
+-->
+
+:taxDeducted.TaxDeducted = {amountDeducted = :taxDeducted@string, rule = AnnotateTotalTaxDeducted}
+
+
+// Annotate Total Tax amount deposited
+Rule: AnnotateTotalTaxDeposited
+(
+    {Deductor}
+    {TAN}
+    {INR}
+    {INR}
+    ({INR}):taxDeposited
+)
+
+-->
+
+:taxDeposited.TaxDeposited = {amountDeposited = :taxDeposited@string, rule = AnnotateTotalTaxDeposited}

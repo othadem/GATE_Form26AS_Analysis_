@@ -1,0 +1,14 @@
+Phase: JAPETransAnnotateAmount
+Input: Token Deductor TAN
+Options: control = appelt
+
+Rule: AnnotateINR
+(
+    {Token.category == CD, Token.kind == number}
+    {Token.category == ".", Token.kind == punctuation}
+    {Token.category == CD, Token.kind == number, Token.length == 2}
+):amountINR
+
+-->
+
+:amountINR.INR = {amount = :amountINR@string , rule = AnnotateINR}

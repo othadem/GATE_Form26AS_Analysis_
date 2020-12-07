@@ -1,0 +1,23 @@
+Phase: JAPETransCalculateMoneySaved
+Input: Income
+Options: control = appelt
+
+Rule: CalculateMoneySaved
+(
+    ({Income}):incomeEarned
+)
+
+-->
+
+{
+    AnnotationSet incomeEarned = (AnnotationSet) bindings.get("incomeEarned");
+    Iterator it = incomeEarned.iterator();
+    
+    double moneySaved = 0.0;
+
+    while(it.hasNext()) {
+        Annotation income = (Annotation) it.next();
+        moneySaved += (Double) income.getFeatures().get("moneySaved");
+    }
+    Out.println(moneySaved);
+}

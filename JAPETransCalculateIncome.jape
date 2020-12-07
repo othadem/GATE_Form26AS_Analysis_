@@ -1,0 +1,51 @@
+Phase: JAPETransCalculateIncome
+Input: Credited TaxDeducted TaxDeposited
+Options: control = appelt
+
+Rule: CalculateIncome
+(
+    ({Credited}):amountEarned
+    {TaxDeducted}
+    ({TaxDeposited}):taxAmountPaid
+)
+:amount
+
+-->
+
+{
+    gate.AnnotationSet amount = (gate.AnnotationSet)bindings.get("amount");
+    // Out.println("amount \n" + amount);
+    gate.FeatureMap featureMap = Factory.newFeatureMap();
+
+    Iterator it = amount.iterator();
+
+    double incomeEarned = 0.0;
+    double taxPaid = 0.0;
+
+    try{
+        while(it.hasNext()) {
+            gate.Annotation it_amount = (gate.Annotation) it.next();
+            // Out.println("it_amount \n" + it_amount);
+            if(it_amount.getFeatures().get("amountPaid") != null) {
+                incomeEarned = Double.valueOf(it_amount.getFeatures().get("amountPaid").toString()).doubleValue();
+                featureMap.put("amountPaid", incomeEarned);            
+            }
+
+            if(it_amount.getFeatures().get("amountDeducted") != null) {
+                taxPaid = Double.valueOf(it_amount.getFeatures().get("amountDeducted").toString()).doubleValue();
+                featureMap.put("amountDeducted", taxPaid);            
+            }
+
+            if(it_amount.getFeatures().get("amountDeposited") != null)
+                featureMap.put("amountDeposited", it_amount.getFeatures().get("amountDeposited"));
+        }
+
+        featureMap.put("moneySaved", incomeEarned - taxPaid);
+    }catch(Exception e) {
+        Out.println(e);
+    }   
+
+    featureMap.put("rule", "CalculateIncome");
+    Out.println("Feature Map \n" + featureMap);
+    outputAS.add(amount.firstNode(), amount.lastNode(), "Income", featureMap);
+}

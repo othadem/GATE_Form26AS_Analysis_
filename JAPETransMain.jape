@@ -1,0 +1,7 @@
+MultiPhase: TrackForm26AS
+Phases:
+JAPETransAnnotateAmount
+JAPETransTotalAmount
+JAPETransCalculateAmount
+JAPETransCalculateIncome
+JAPETransCalculateMoneySaved
