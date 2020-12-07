@@ -12,9 +12,6 @@
         <version>8.6</version>
         <downloadListeners/>
       </gate.creole.Plugin-Maven>
-      <gate.util.persistence.PersistenceManager-URLHolder>
-        <urlString>$relpath$E:/Install/gate-8.4.1/plugins/Tools/</urlString>
-      </gate.util.persistence.PersistenceManager-URLHolder>
       <gate.creole.Plugin-Maven>
         <group>uk.ac.gate.plugins</group>
         <artifact>wordnet</artifact>
@@ -30,23 +27,7 @@
     </localList>
     <collectionType>java.util.Collections$UnmodifiableSet</collectionType>
   </urlList>
-  <application class="gate.util.persistence.ConditionalSerialAnalyserControllerPersistence">
-    <corpus class="gate.util.persistence.CorpusPersistence">
-      <dsData class="gate.util.persistence.DSPersistence">
-        <className>gate.persist.SerialDataStore</className>
-        <storageUrlString>file:/F:/Projects/GATE/Mine/GATEArtifacts/Datastores/Form26ASAnalysis/</storageUrlString>
-        <storageUrl class="gate.util.persistence.PersistenceManager$URLHolder">
-          <urlString>$relpath$GATEArtifacts/Datastores/Form26ASAnalysis/</urlString>
-        </storageUrl>
-      </dsData>
-      <persistenceID class="string">Form26AS Corpus___1606471693750___9992</persistenceID>
-      <resourceType>gate.corpora.SerialCorpusImpl</resourceType>
-      <resourceName>Form26AS Corpus</resourceName>
-      <initParams class="gate.util.persistence.MapPersistence">
-        <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-        <localMap/>
-      </initParams>
-    </corpus>
+  <application class="gate.util.persistence.ConditionalSerialAnalyserControllerPersistence">    
     <strategiesList class="gate.util.persistence.CollectionPersistence">
       <localList>
         <gate.util.persistence.AnalyserRunningStrategyPersistence>
